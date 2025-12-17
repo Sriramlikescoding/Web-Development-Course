@@ -1,27 +1,50 @@
--- Create A Student Table Wtih Columns ID, Name, Score-Eng, Score-Lit, Score-Math, Score-Sci
+create TABLE dinnerSpots(
+Name text,
+Neighborhood text,
+Cuisine text,
+Review real,
+Price text,
+Health text
+);
 
-CREATE TABLE student(
-    ID integer PRIMARY KEY,
-     Name text,
-     Country text,
-    Score_Eng integer,
-     Score_Lit integer,
-    Score_Math integer,
-    Score_Sci integer);
+insert into dinnerSpots VALUES
+('Sriram', 'MidTown', 'Korean', 4.6, '58', 'B'),
+('Bob', 'West Side', 'Pizza', 2.1, '13', 'B'),
+('Heath', 'East Side', 'Burgers', 3.8, '24', ''),
+('Ledger', 'East Side', 'Chinese', 4.6, '38', ''),
+('Nicolas', 'MidTown', 'Steak', 5.0, '50', 'A'),
+('Cage', 'Brooklyn', 'Italian', 1.2, '40', 'B'),
+('Andrew', 'Brooklyn', 'Burgers', 3.5, '24', ''),
+('Andy', 'East Side', 'Pizza', 4.2, '12', 'B'),
+('Lucas', 'MidTown', 'Mexican', 3.8, '10', 'B'),
+('Lilian', 'West Side', 'Mexican', 2.5, '32', ''),
+('Ian', 'Up Town', 'Pizza', 5.0, '60', 'A');
 
-insert into student(ID, Name, Country, Score_Eng, Score_Lit, Score_Math, Score_Sci)
-VALUES 
-(1, 'Sriram', 'U.S.A.', 84, 92, 89, 98),
-(2, 'Lucy', 'U.S.A.', 98, 82, 40, 100),
-(3, 'Cyrus', 'Germany', 99, 67, 87, 79),
-(4, 'Lucas', 'Germany', 67, 81, 89, 85),
-(5, 'Guy', 'Germany', 100, 76, 70, 79),
-(6, 'Brian', 'France', 69, 79, 100, 92);
+select * from dinnerSpots;
+--Select distinct neighborhood from dinner spots table
+select distinct Neighborhood from dinnerSpots;
 
-select * from student;
-select distinct Country from student;
-select count( distinct Country) from student;
-select count( Country) from student;
-select count( ID) from student where Score_Lit > 70;
-select sum(Score_Lit) from student;
-select avg(Score_Lit) from student;
+--Select distinct cuisines from dinner spots table
+select distinct Cuisine from dinnerSpots;
+
+--Select all restaurants with chinese cuisine
+select * from dinnerSpots where Cuisine == 'Chinese';
+
+--Select all restaurants with reviews >= 4
+select * from dinnerSpots where Review >=4;
+
+--Select all restaurants with Italian cuisine and with price > 35
+
+select * from dinnerSpots where Cuisine == 'Italian' and Price > 35;
+
+--Pick up all rows which are not null
+select * from dinnerSpots where Health <> null;
+
+--Select top 4 restaurants Order by Reviews in descending order
+select * from dinnerSpots order by Review desc limit 4;
+
+--Select all records where the name starts with L
+select * from dinnerSpots where name like 'L%';
+
+--Select all records where neighborhood is midtown or east side or west tsie
+select * from dinnerSpots where Neighborhood in ('Midtown', 'East Side', 'West Side');
