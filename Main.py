@@ -1,10 +1,11 @@
+import numpy as np
 import matplotlib.pyplot as p
-
-Year = [1920, 1930, 1940, 1950, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
-
-UnemploymentRate = [9.8, 12, 8, 7.2, 6.9, 7, 6.5, 6.2, 5.5, 6.3, 6.5]
-p.plot(Year, UnemploymentRate)
-p.title("Unemployment vs. Years")
-p.xlabel("Year")
-p.ylabel("Unemployment Rate")
+data = {"Maths":20, "Science":15, "Coding":30, "Geography":28}
+courses = list(data.keys())
+values = list(data.values())
+figure = p.figure(figsize=(10,5))
+p.bar(courses, values, color="red", width = 0.5)
+p.xlabel("Courses Offered")
+p.ylabel("Students Enrolled")
+p.title("Students enrolled in different courses")
 p.show()
