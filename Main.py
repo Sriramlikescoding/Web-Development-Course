@@ -1,13 +1,24 @@
 import matplotlib.pyplot as p
-bloodsugar_women = [113, 85,  90, 150, 120, 71, 114, 125, 99, 102, 102, 85, 100]
-bloodsugar_men = [112, 75, 130, 128, 80, 99, 100, 99, 106, 117, 109, 72, 100]
-type = [bloodsugar_men,bloodsugar_women]
-colors = ["g", "r"]
-bins = [80, 100, 125, 150]
-label = ["Men", "Women"]
-p.xlabel("Blood Sugar Range")
-p.ylabel("Number of Patients")
-p.hist(type,bins=8, width=0.95, color=colors, label=label, orientation="vertical")
-p.title("Blood Sugar level chart")
-p.legend()
+import pandas as pd
+import seaborn as sns
+import numpy as np
+data = pd.read_csv("Weather_Data.csv")
+print(data.info())
+print(data.head())
+datagroup = data.groupby("month").mean(numeric_only = True)
+#groups graph by month, then averages column, n
+datagroup = datagroup.reset_index()
+#groups data not by month
+p.figure(figsize = (8, 5))
+datagroup.plot.area(x="month", y = "Humidity", alpha = 0.6)
+p.title("Average monthly humidity")
+p.xlabel("Humidity")
+p.ylabel("Month")
+#Alpha is transparency
+p.show()
+p.figure(figsize = (8,5))
+p.plot(data["Temperature (C)"])
+p.title("Temperature over time")
+p.xlabel("Reading number over time")
+p.ylabel("Temperature")
 p.show()
