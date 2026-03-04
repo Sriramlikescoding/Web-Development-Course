@@ -1,24 +1,26 @@
-import matplotlib.pyplot as p
-import pandas as pd
-import seaborn as sns
 import numpy as np
-data = pd.read_csv("Weather_Data.csv")
-print(data.info())
+import matplotlib.pyplot as p
+import seaborn as sns
+import pandas as pd
+import statistics as st
+
+data = pd.read_csv("Titanic Dataset.csv")
 print(data.head())
-datagroup = data.groupby("month").mean(numeric_only = True)
-#groups graph by month, then averages column, n
-datagroup = datagroup.reset_index()
-#groups data not by month
-p.figure(figsize = (8, 5))
-datagroup.plot.area(x="month", y = "Humidity", alpha = 0.6)
-p.title("Average monthly humidity")
-p.xlabel("Humidity")
-p.ylabel("Month")
-#Alpha is transparency
-p.show()
-p.figure(figsize = (8,5))
-p.plot(data["Temperature (C)"])
-p.title("Temperature over time")
-p.xlabel("Reading number over time")
-p.ylabel("Temperature")
-p.show()
+print(data.info())
+print(data.dtypes)
+mean_age = np.mean(data['Age'])
+print(f"Mean age of passenger is {mean_age}")
+mean_faire = np.mean(data['Fare'])
+print(f"Mean of fare is {mean_faire}")
+
+median_age = np.median(data['Age'])
+print(f"Median age of passenger is {median_age}")
+median_faire = np.median(data['Fare'])
+print(f"Median of fare is {median_faire}")
+
+mode_age = st.mode(data['Age'])
+print(f"Mode of Age is {mode_age}")
+mode_Pclass = st.mode(data['Pclass'])
+print(f"Mode of pClass is {mode_Pclass}")
+mode_gender = data["Gender"].value_counts().index[0]
+print(f"Mode of gender is {mode_gender}")
